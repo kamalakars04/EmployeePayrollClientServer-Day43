@@ -1,0 +1,35 @@
+html
+{
+    font-family: MontSerrat;
+
+}
+.header
+{
+    display: flex;
+    background-color: efffff;
+    margin-top: 1em;
+    padding: 2em;
+}
+.header img
+{
+    margin-left: 1em;
+    margin-right: 6px;
+}
+.header-text
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.text-employee
+{
+    color: chartreuse;
+    font-weight: bolder;
+    font-size: larger;
+}
+.text-payroll
+{
+    color: black;
+    font-weight: bolder;
+    font-size: larger;
+}
