@@ -1,19 +1,16 @@
-html
-{
-    font-family: MontSerrat;
-
-}
 .header
 {
     display: flex;
     background-color: efffff;
-    margin-top: 1em;
-    padding: 2em;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 .header img
 {
-    margin-left: 1em;
+    margin-left: 15px;
     margin-right: 6px;
+    border: 1px solid green;
 }
 .header-text
 {
@@ -33,3 +30,54 @@ html
     font-weight: bolder;
     font-size: larger;
 }
+.form-content
+{
+    background-color: rgb(202, 198, 198);
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+}
+.form-payroll
+{
+    background-color: white;
+    width: 70vw;
+    height:90%;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+}
+form div
+{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 10px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.form-header
+{
+    font-size: x-large;
+    font-weight: bolder;
+    text-shadow: ivory;
+    margin-top: 20px;
+}
+form label,input
+{
+}
+form label
+{
+    width:20%;
+    font-size: large;
+    font-weight: normal;
+
+}
+form input
+{
+    flex:auto;
+    line-height: 2.0;
+    border : 1px solid rgb(66, 65, 65);
+}
+
