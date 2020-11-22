@@ -69,8 +69,8 @@ const createEmployeePayroll=()=>
     employeePayrollData.department = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputElementValue('#salary');
     employeePayrollData.note = getInputElementValue('#notes');
-    let date = getInputElementValue('#day')+" "+getInputElementValue('#month')+" "+getInputElementValue('#year');
-    employeePayrollData.date = Date.parse(date);
+    let date = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
+    employeePayrollData.startDate = new Date(date)
     return employeePayrollData; 
 }
 

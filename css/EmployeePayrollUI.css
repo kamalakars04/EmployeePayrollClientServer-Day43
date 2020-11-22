@@ -128,8 +128,9 @@ body
     margin-left: 3vw;
     flex : 5 0 0;
     line-height: 2.0;
-    padding: 0;
+    padding: 2px;
     justify-content: flex-start;
+    border: 1px solid black;
 }
 .errorText
 {
