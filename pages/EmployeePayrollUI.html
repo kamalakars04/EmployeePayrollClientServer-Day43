@@ -19,7 +19,7 @@
     </header>
     </div>
     <div class="form-content">
-        <form class="form-payroll">
+        <form class="form-payroll" onreset="resetForm();">
             <div class="row-content formHeader">Employee Payroll Form</div>
             <div class ="row-content">
                 <label class="Labels" for="name">Name</label>
@@ -71,7 +71,7 @@
             <div class="row-content"> 
                 <label class="Labels" for="salary">Salary</label> 
                 <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
-                <output class="salary-output" id="salaryOutput" for="salary">400000</output> 
+                <output class="salary-output" id="salaryOutput" for="salary"></output> 
             </div> 
             <div class="row-content">
                 <label class="Labels" for="startDate">Start Date </label>
@@ -159,5 +159,6 @@
             </div> 
         </form>
     </div>
+    <script src="../js/EmployeePayroll.js"></script>
 </body>
 </html>
