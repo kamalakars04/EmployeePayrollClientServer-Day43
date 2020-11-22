@@ -71,7 +71,7 @@
             <div class="row-content"> 
                 <label class="Labels" for="salary">Salary</label> 
                 <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
-                <output class="salary-output text" id="salaryOutput" for="salary">400000</output> 
+                <output class="salary-output" id="salaryOutput" for="salary">400000</output> 
             </div> 
             <div class="row-content">
                 <label class="Labels" for="startDate">Start Date </label>
@@ -143,10 +143,20 @@
                         <option value="2008">2008</option> 
                         <option value="2007">2007</option> 
                         <option value="2006">2006</option> 
-                   </select>
+                    </select>
                 </div>
-             </div>
             </div>
+            <div class="row-content">
+                <label class="Labels" for="notes">Notes</label>
+                <textarea id="notes" class="input" name="notes" placeholder="Enter your notes here..." style="height:80px"></textarea>
+            </div>
+            <div class="allButtons">
+                <a class="cancel" href="./EmployeePayrollUI.html" ><button type="button" class="button">Cancel</button></a>
+                <div class="submit-reset">
+                    <button type="submit" class="button submitButton" id="submitButton">Submit</button>
+                    <button type="reset" class="button resetButton">Reset</button>
+                </div> 
+            </div> 
         </form>
     </div>
 </body>
