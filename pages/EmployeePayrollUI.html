@@ -9,6 +9,7 @@
     <title>Employee Payroll Form</title>
 </head>
 <body>
+    <div>
     <header class="header">
         <img src="../assets/HeaderIcon.png" alt="Form logo">
         <div class="header-text">
@@ -16,35 +17,62 @@
             <span class="text-payroll">PAYROLL</span>
         </div>
     </header>
+    </div>
     <div class="form-content">
         <form class="form-payroll">
-            <div class="form-header">Employee Payroll Form</div>
-            <div class ="input-name">
-                <label for="name">Name</label>
+            <div class="row-content formHeader">Employee Payroll Form</div>
+            <div class ="row-content">
+                <label class="Labels" for="name">Name</label>
                 <input type="text" id="name" name="name" required>
                 <error-output class="error-name"></error-output>
             </div>
-            <div class="input-profile">
-                <label for="profilePic">Profile image</label>
+            <div class="row-content">
+                <label class="Labels" for="profilePic">Profile image</label>
                 <div class="radio-content">
-                    <label for="female">
+                    <label class="MultipleLabels" for="female">
                         <input type="radio" id="female" name="profilePic" value="../assets/profilePic/Ellipse -1.png" required>
                         <img src="../assets/profilePic/Ellipse -1.png" alt="female">
                     </label>
-                    <label for="male">
+                    <label class="MultipleLabels" for="male">
                         <input type="radio" id="male" name="profilePic" value="../assets/profilePic/Ellipse -2.png" required>
                         <img src="../assets/profilePic/Ellipse -2.png" alt="female">
                     </label>
-                    <label for="femaleOne">
+                    <label class="MultipleLabels" for="femaleOne">
                         <input type="radio" id="femaleOne" name="profilePic" value="../assets/profilePic/Ellipse -4.png" required>
                         <img src="../assets/profilePic/Ellipse -4.png" alt="female">
                     </label>
-                    <label for="maleOne">
+                    <label class="MultipleLabels" for="maleOne">
                         <input type="radio" id="maleOne" name="profilePic" value="../assets/profilePic/Ellipse -3.png" required>
                         <img src="../assets/profilePic/Ellipse -3.png" alt="female">
                     </label>
                 </div>
             </div>
+            <div class="row-content">
+                <label class="Labels" for="gender">Gender</label>
+                <div class="radio-gender">
+                    <label class="MultipleLabels" for="male">
+                        <input type="radio" id="male" name="gender" value="male">Male
+                    </label>
+                    <label class="MultipleLabels" for="female">
+                        <input type="radio" id="famele" name="gender" value="female">Female
+                    </label>
+                </div>
+            </div>
+            <div class="row-content">
+                <label class="Labels" for="department">Department</label>
+                <div class="checkbox"> 
+                    <label class="MultipleLabels" for="hr"><input class="checkbox" type="checkbox" id="hr" name="department" value="HR">HR</label> 
+                    <label class="MultipleLabels" for="sales"><input class="checkbox" type="checkbox" id="sales" name="department" value="Sales">Sales</label>
+                    <label class="MultipleLabels" for="finance"><input class="checkbox" type="checkbox" id="finance" name="department" value="Finance">Finance</label> 
+                    <label class="MultipleLabels" for="engineer"><input class="checkbox" type="checkbox" id="engineer" name="department" value="Engineer">Engineer</label> 
+                    <label class="MultipleLabels" for="others"><input class="checkbox" type="checkbox" id="others" name="department" value="Others">Others</label>
+                </div> 
+            </div>
+            <div class="row-content"> 
+                <label class="Labels" for="salary">Salary</label> 
+                <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
+                <output class="salary-output text" id="salaryOutput" for="salary">400000</output> 
+            </div> 
         </form>
     </div>
 </body>
