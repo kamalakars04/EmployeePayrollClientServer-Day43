@@ -44,7 +44,9 @@ function save()
     {
         try
         {
-            alert(createEmployeePayroll().toString());
+            let employee = createEmployeePayroll();
+            CreateAndSaveLocalStorage(employee);
+            alert(employee.toString());
             return true;
         }
         catch(e)
@@ -63,6 +65,21 @@ function save()
         return false;
     }
     return false;
+}
+
+function CreateAndSaveLocalStorage(employeeEntry)
+{
+    let employeePayrollList = [];
+    employeePayrollList = JSON.parse(localStorage.getItem("NewEmployeePayrollList")); 
+    if(employeePayrollList != undefined)
+    {
+        employeePayrollList.push(employeeEntry); 
+    } 
+    else
+    { 
+        employeePayrollList = [employeeEntry] ;
+    } 
+    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList))
 }
 
 const createEmployeePayroll=()=>
