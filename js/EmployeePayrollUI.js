@@ -32,6 +32,7 @@ function resetForm()
 { 
     const output = document.querySelector('#salaryOutput');
     output.textContent = 400000;
+    document.querySelector('.error-name').textContent = "";
 }
 
 function save()
