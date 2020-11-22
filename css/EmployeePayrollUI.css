@@ -93,19 +93,17 @@
     font-weight: normal;
 
 }
-form input
+.text
 {
-    flex:auto;
     margin-left: 3vw;
-    line-height: 2.0;
-    border : 1px solid rgb(66, 65, 65);
 }
-.radio-content, .radio-gender,.checkbox,.date-content
+.input
 {
     display: flex;
     flex : auto;
-    flex-flow: row wrap;
-    padding: 5px;
+    flex-flow: row;
+    margin-left: 3vw;
+    line-height: 2.0;
     justify-content: flex-start;
 }
 .MultipleLabels
@@ -113,13 +111,12 @@ form input
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
+    margin-right: 3vw;
     align-items: center;
 }
 form select
 {
-    width: auto;
-    height: auto;
-    margin-left: 3vw;
+    margin-right: 3vw;
     line-height: 2.0;
     padding: 8px; 
     border: 2px solid #CCC;

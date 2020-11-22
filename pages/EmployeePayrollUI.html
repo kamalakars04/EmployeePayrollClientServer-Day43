@@ -23,12 +23,12 @@
             <div class="row-content formHeader">Employee Payroll Form</div>
             <div class ="row-content">
                 <label class="Labels" for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+                <input class="input text" type="text" id="name" name="name" required>
                 <error-output class="error-name"></error-output>
             </div>
             <div class="row-content">
                 <label class="Labels" for="profilePic">Profile image</label>
-                <div class="radio-content">
+                <div class="input">
                     <label class="MultipleLabels" for="female">
                         <input type="radio" id="female" name="profilePic" value="../assets/profilePic/Ellipse -1.png" required>
                         <img src="../assets/profilePic/Ellipse -1.png" alt="female">
@@ -49,7 +49,7 @@
             </div>
             <div class="row-content">
                 <label class="Labels" for="gender">Gender</label>
-                <div class="radio-gender">
+                <div class="input">
                     <label class="MultipleLabels" for="male">
                         <input type="radio" id="male" name="gender" value="male">Male
                     </label>
@@ -60,7 +60,7 @@
             </div>
             <div class="row-content">
                 <label class="Labels" for="department">Department</label>
-                <div class="checkbox"> 
+                <div class="input"> 
                     <label class="MultipleLabels" for="hr"><input class="checkbox" type="checkbox" id="hr" name="department" value="HR">HR</label> 
                     <label class="MultipleLabels" for="sales"><input class="checkbox" type="checkbox" id="sales" name="department" value="Sales">Sales</label>
                     <label class="MultipleLabels" for="finance"><input class="checkbox" type="checkbox" id="finance" name="department" value="Finance">Finance</label> 
@@ -75,7 +75,7 @@
             </div> 
             <div class="row-content">
                 <label class="Labels" for="startDate">Start Date </label>
-                <div class="date-content"> 
+                <div class="input"> 
                    <select id="day" name="Day">
                    <option value="">Day</option> 
                    <option value="1">1</option> 
