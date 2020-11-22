@@ -131,6 +131,7 @@ body
     padding: 2px;
     justify-content: flex-start;
     border: 1px solid black;
+    border-radius: 4px;
 }
 .errorText
 {

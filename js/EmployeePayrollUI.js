@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', (event) =>
         catch (e) 
         {
             textError.textContent = e;
-        } 
+        }
     });
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
@@ -50,11 +50,16 @@ function save()
         catch(e)
         {
             alert(e);
+            if(e.toString().includes("name"))
+                document.querySelector("#fullName").focus();
+            if(e.toString().includes("Date"))
+                Array.from(document.querySelectorAll('select')).forEach(p => p.focus());
         }
     }
     else if(result.length <=0)
     {
         alert('Select atleast one department');
+        department.forEach(p => p.focus());
         return false;
     }
     return false;
