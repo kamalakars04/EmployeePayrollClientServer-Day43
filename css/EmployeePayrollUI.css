@@ -1,3 +1,8 @@
+body
+{
+    background-color: rgb(202, 198, 198);
+    margin : 0;
+}
 @media screen and (min-width:600px)
 {
     .form-payroll
@@ -9,7 +14,8 @@
         display: flex;
         flex-direction: column;
         margin-top: 2vh;
-        margin-bottom: 2vh;
+        border-radius: 15px;
+
     }
 }
 @media screen and (max-width:600px)
@@ -24,36 +30,47 @@
         flex-direction: column;
         margin-top: 2vh;
         margin-bottom: 2vh;
+        border-radius: 8px;
     }
 }
 .header
 {
     display: flex;
-    height: 8vh;
+    flex: auto;
+    justify-content: flex-start;
     margin-top: 2vh;
-    margin-bottom: 2vh;
-    margin-left: 3vh;
+    background-color: white;
+    box-shadow: 2px 2px rgb(216, 215, 215);
+    border: 1px solid rgb(51, 51, 33);
+    margin-bottom: 1vh;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 5px;
 }
 .header > img
 {
-    margin-left: 15px;
+    margin-left: 8%;
     margin-right: 6px;
-    border: 1px solid green;
+    align-content: center;
 }
 .header-text
 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
 }
 .text-employee
 {
+    font-family: "Montserrat", sans-serif;
+    flex: auto;
     color: chartreuse;
     font-weight: bolder;
     font-size: 2vw;
 }
 .text-payroll
 {
+    font-family: "Montserrat", sans-serif;
     color: black;
     font-weight: bolder;
     font-size: 2vw;
@@ -64,7 +81,6 @@
     background-color: rgb(202, 198, 198);
     display: flex;
     flex: auto;
-    height: 100%;
     padding: 10px;
     justify-content: center;
     align-items: center;
@@ -106,6 +122,18 @@
     line-height: 2.0;
     padding: 0;
     justify-content: flex-start;
+}
+.textName
+{
+    margin-left: 3vw;
+    flex : 5 0 0;
+    line-height: 2.0;
+    padding: 0;
+    justify-content: flex-start;
+}
+.errorText
+{
+    flex:auto;    
 }
 .MultipleLabels
 {
