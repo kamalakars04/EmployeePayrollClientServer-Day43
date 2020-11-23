@@ -53,19 +53,34 @@ body
 }
 .EmployeeDetails
 {
-    justify-content: space-evenly;
-    display: flex;
-    flex-direction: row;
-    margin-left: 8%;
     
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    margin-left: 8%;
 }
 .textEmployee
 {
+    font: normal normal bold 20px/25px Montserrat;
+    font-family: "Montserrat", sans-serif;
     flex: auto;
 }
 .AddUser
 {
+    display: flex;
     margin-right: 5%;
+    justify-content: flex-end;
+    align-items: center;
+    flex: auto;
+}
+.searchImage
+{
+    border-radius: 50%;
+    border-image: round;
+    width: 40px;
+    height: auto;
+    size: 10px;
+    margin-right: 4px;
 }
 .addButton 
 { 
