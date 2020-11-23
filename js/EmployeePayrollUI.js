@@ -106,14 +106,15 @@ function CreateAndSaveLocalStorage(employeeEntry)
 const createEmployeePayroll=()=>
 { 
     let employeePayrollData = new EmployeePayRoll();
+    employeePayrollData.id = createNewEmployeeId();
     employeePayrollData.name = getInputElementValue('#fullName');
-    employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
+    employeePayrollData.profilePic = getSelectedValues('[name=profilePic]').pop();
     employeePayrollData.gender = getSelectedValues('[name=gender]').pop(); 
     employeePayrollData.department = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputElementValue('#salary');
     employeePayrollData.note = getInputElementValue('#notes');
     let date = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
-    employeePayrollData.startDate = new Date(date)
+    employeePayrollData.startDate = new Date(date);
     return employeePayrollData; 
 }
 
@@ -133,4 +134,11 @@ const getInputElementValue = (id) =>
 {
     let value = document.querySelector(id).value;
     return value; 
+}
+
+const createNewEmployeeId = () => {
+    let empID = localStorage.getItem("EmployeeID");
+    empID = !empID ? 1 : (parseInt(empID)+1).toString();
+    localStorage.setItem("EmployeeID",empID);
+    return empID;
 }

@@ -49,13 +49,13 @@ class EmployeePayRoll
     var diff = Math.abs(now.getTime() - startDate.getTime());
     if (diff / (1000 * 60 * 60 * 24) > 30) 
       throw 'Start Date is beyond 30 Days!';
-    this._startDate = startDate; 
+    this._startDate = startDate.toLocaleDateString("en-GB"); 
   }
  
    // method
    toString() {
      return "id=" + this.id + ", name='" + this.name + ", gender='" + this.gender + 
             ", profilePic='" + this.profilePic + ", department=" + this.department +
-            ", salary=" + this.salary + ", startDate=" + this.startDate.toLocaleDateString("en-GB") + ", note=" + this.note;
+            ", salary=" + this.salary + ", startDate=" + this.startDate + ", note=" + this.note;
    }
 }
