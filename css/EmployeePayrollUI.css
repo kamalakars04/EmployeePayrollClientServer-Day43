@@ -3,7 +3,7 @@ body
     background-color: rgb(202, 198, 198);
     margin : 0;
     display: flex;
-    flex-flow: column;
+    flex-flow: column wrap;
     flex: auto;
 }
 @media screen and (min-width:600px)
@@ -28,7 +28,7 @@ body
 {
     .form-payroll
     {
-        min-width: 300px;
+        min-width: 400px;
         background-color: white;
         height: 100%;
         margin-right: 10%;

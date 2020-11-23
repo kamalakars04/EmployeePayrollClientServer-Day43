@@ -3,7 +3,7 @@ body
     background-color: rgb(202, 198, 198);
     margin : 0;
     display: flex;
-    flex-flow: column;
+    flex-flow: column wrap;
     flex: auto;
 }
 .header
