@@ -17,8 +17,8 @@ window.addEventListener('DOMContentLoaded', (event) =>
         catch (e) 
         {
             textError.textContent = e;
-        } 
-    }) ;
+        }
+    });
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
     output.textContent = salary.value;
@@ -52,6 +52,7 @@ function resetForm()
 { 
     const output = document.querySelector('#salaryOutput');
     output.textContent = 400000;
+    document.querySelector('.error-name').textContent = "";
 }
 
 function save()
@@ -64,20 +65,42 @@ function save()
     {
         try
         {
-            alert(createEmployeePayroll().toString());
+            let employee = createEmployeePayroll();
+            CreateAndSaveLocalStorage(employee);
+            alert(employee.toString());
             return true;
         }
         catch(e)
         {
             alert(e);
+            if(e.toString().includes("name"))
+                document.querySelector("#fullName").focus();
+            if(e.toString().includes("Date"))
+                Array.from(document.querySelectorAll('select')).forEach(p => p.focus());
         }
     }
     else if(result.length <=0)
     {
         alert('Select atleast one department');
+        department.forEach(p => p.focus());
         return false;
     }
     return false;
+}
+
+function CreateAndSaveLocalStorage(employeeEntry)
+{
+    let employeePayrollList = [];
+    employeePayrollList = JSON.parse(localStorage.getItem("NewEmployeePayrollList")); 
+    if(employeePayrollList != undefined)
+    {
+        employeePayrollList.push(employeeEntry); 
+    } 
+    else
+    { 
+        employeePayrollList = [employeeEntry] ;
+    } 
+    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList))
 }
 
 const createEmployeePayroll=()=>

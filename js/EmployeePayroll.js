@@ -36,7 +36,10 @@ class EmployeePayRoll
  
    get note() { return this._note; }
    set note(note) { 
-     this._note = note; 
+       if(note == "")
+       this._note = "Empty"
+       else
+       this._note = note; 
    }
  
    get startDate() { return this._startDate; }
@@ -53,9 +56,6 @@ class EmployeePayRoll
    toString() {
      return "id=" + this.id + ", name='" + this.name + ", gender='" + this.gender + 
             ", profilePic='" + this.profilePic + ", department=" + this.department +
-            ", salary=" + this.salary + ", startDate=" + this.startDate + ", note=" + this.note;
+            ", salary=" + this.salary + ", startDate=" + this.startDate.toLocaleDateString("en-GB") + ", note=" + this.note;
    }
 }
-let emp = new EmployeePayRoll();
-emp.startDate=new Date(2020,10,15);
-console.log(emp.toString());
