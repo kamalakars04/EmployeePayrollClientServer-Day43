@@ -1,6 +1,10 @@
+*
+{
+    box-sizing: border-box;
+}
 body
 {
-    background-color: rgb(202, 198, 198);
+    background-color: rgb(221, 219, 219);
     margin : 0;
     display: flex;
     flex-flow: column wrap;
@@ -46,4 +50,52 @@ body
     color: black;
     font-weight: bolder;
     font-size: large;
+}
+.EmployeeDetails
+{
+    
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    margin-left: 8%;
+}
+.textEmployee
+{
+    font: normal normal bold 20px/25px Montserrat;
+    font-family: "Montserrat", sans-serif;
+    flex: auto;
+}
+.AddUser
+{
+    display: flex;
+    margin-right: 5%;
+    justify-content: flex-end;
+    align-items: center;
+    flex: auto;
+}
+.searchImage
+{
+    border-radius: 50%;
+    border-image: round;
+    width: 40px;
+    height: auto;
+    size: 10px;
+    margin-right: 4px;
+}
+.addButton 
+{ 
+    font-size: 20px;
+    font-family: Roboto;
+    color: white; 
+    background-color: rgb(28, 158, 28);
+    font-weight: 400;
+    margin-right: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid black;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
