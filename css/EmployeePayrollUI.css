@@ -2,31 +2,40 @@ body
 {
     background-color: rgb(202, 198, 198);
     margin : 0;
+    display: flex;
+    flex-flow: column;
+    flex: auto;
 }
 @media screen and (min-width:600px)
 {
     .form-payroll
     {
         background-color: white;
-        width: 70%;
         height: 100%;
+        margin-right: 15%;
+        margin-left: 15%;
         align-content: center;
+        min-width: 300px;
         display: flex;
+        flex: auto;
         flex-direction: column;
+        justify-content: center;
         margin-top: 2vh;
         border-radius: 15px;
-
     }
 }
 @media screen and (max-width:600px)
 {
     .form-payroll
     {
+        min-width: 300px;
         background-color: white;
-        width: 80%;
         height: 100%;
+        margin-right: 10%;
+        margin-left: 10%;
         align-content: center;
         display: flex;
+        flex: auto;
         flex-direction: column;
         margin-top: 2vh;
         margin-bottom: 2vh;
@@ -63,24 +72,20 @@ body
 .text-employee
 {
     font-family: "Montserrat", sans-serif;
-    flex: auto;
     color: chartreuse;
     font-weight: bolder;
-    font-size: 2vw;
+    font-size: large;
 }
 .text-payroll
 {
     font-family: "Montserrat", sans-serif;
     color: black;
     font-weight: bolder;
-    font-size: 2vw;
+    font-size: large;
 }
 
 .form-content
 {
-    background-color: rgb(202, 198, 198);
-    display: flex;
-    flex: auto;
     padding: 10px;
     justify-content: center;
     align-items: center;
@@ -89,11 +94,11 @@ body
 .row-content
 {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row;
     align-items: center;
     padding: 10px;
     margin-left: 5vw;
-    margin-right: 8vw;
+    margin-right: 5vw;
 }
 
 .formHeader
@@ -104,10 +109,10 @@ body
 }
 .Labels
 {
-    width:20%;
+    min-width:20%;
     font-size: large;
     font-weight: normal;
-
+    margin-right: 5vw;
 }
 .text
 {
@@ -118,20 +123,34 @@ body
     display: flex;
     flex : auto;
     flex-flow: row wrap;
-    margin-left: 3vw;
     line-height: 2.0;
     padding: 0;
     justify-content: flex-start;
+    align-content: center;
+}
+.dateinput
+{
+    display: flex;
+    flex-flow: row;
+    flex: auto;
+    line-height: 2.0;
+    padding: 0;
+    justify-content: flex-start;
+    align-content: center;   
 }
 .textName
 {
-    margin-left: 3vw;
-    flex : 5 0 0;
+    min-width: 60%;
+    flex : auto;
     line-height: 2.0;
     padding: 2px;
     justify-content: flex-start;
     border: 1px solid black;
     border-radius: 4px;
+}
+.date
+{
+    flex-flow: row;
 }
 .errorText
 {
@@ -147,7 +166,7 @@ body
 }
 form select
 {
-    margin-right: 3vw;
+    margin-right: 2vw;
     line-height: 2.0;
     padding: 8px; 
     border: 2px solid #CCC;

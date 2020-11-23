@@ -18,8 +18,9 @@
         </div>
     </header>
     </div>
-    <div class="form-content">
-        <form class="form-payroll" onreset="resetForm();" onsubmit="return save();">
+    <form class="form-payroll" onreset="resetForm();" onsubmit="return save();">
+        <div class="form-content">
+
             <div class="row-content formHeader">Employee Payroll Form</div>
             <div class ="row-content">
                 <label class="Labels" for="fullName">Name</label>
@@ -146,6 +147,7 @@
                         <option value="2007">2007</option> 
                         <option value="2006">2006</option> 
                     </select>
+                    <error-output class="date-error"></error-output>
                 </div>
             </div>
             <div class="row-content">
@@ -159,8 +161,8 @@
                     <button type="reset" class="button resetButton">Reset</button>
                 </div> 
             </div> 
-        </form>
-    </div>
+         </div>
+    </form>
     <script src="../js/EmployeePayrollUI.js"></script>
     <script src="../js/EmployeePayroll.js"></script>
 </body>
