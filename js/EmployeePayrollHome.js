@@ -20,7 +20,10 @@ const createEmployeeTable = ()=>{
             <td><div class="dept-label">Finance</div><div class="dept-label">HR</div></td>
             <td>350000</td>
             <td>21/07/1999</td>
-            <td>Kamalakar Rao</td>
+            <td>
+                <img id="delete" src="../assets/icons/delete-black-18dp.svg" alt="delete" onclick="Delete(this)">
+                <img id="edit" src="../assets/icons/create-black-18dp.svg" alt="edit" onclick="Update(this)">
+            </td>
         </tr>
     `;
     document.querySelector(".employeeTable").innerHTML = innerHtml;

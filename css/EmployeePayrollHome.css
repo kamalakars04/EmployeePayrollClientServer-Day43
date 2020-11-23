@@ -135,6 +135,10 @@ th
     opacity: 1;
     border: 0px solid #dddddd;
 }
+th:first-child
+{
+    max-width: 5vw;
+}
 tr:not(:first-child) {
     background: #ffffff 0% 0% no-repeat padding-box;
     border: 1px solid #e3e3e3;
@@ -154,6 +158,8 @@ td:first-child
     display: flex;
     flex: auto;
     align-items: center;
+    margin-left: 20%;
+
 }
 
 td img:first-child {
