@@ -141,7 +141,7 @@ th:first-child
 }
 tr:not(:first-child) {
     background: #ffffff 0% 0% no-repeat padding-box;
-    border: 1px solid #e3e3e3;
+    border: 4px solid #e3e3e3;
     border-radius: 3px;
 }
 
@@ -174,12 +174,10 @@ td img {
     background-color: #e9fea5;
     border-radius: 40%;
     width: fit-content;
-    padding: 1px 7px;
+    padding: 7px 7px;
     text-align: center;
     font-size: 14px;
     display: inline-block;
     font-weight: 300;
-    margin-bottom: 8px;
-    margin-right: 3px;
 }
 
