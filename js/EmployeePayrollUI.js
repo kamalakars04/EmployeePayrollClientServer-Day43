@@ -26,6 +26,26 @@ window.addEventListener('DOMContentLoaded', (event) =>
     {
         output.textContent = salary.value; 
     });
+
+    const date = Array.from(document.querySelectorAll('[name = date]'));
+    date.forEach(p => p.addEventListener('input', function(){
+        if(date[0].value !="" && date[1].value != "" && date[2].value != "")
+        {
+            const error = document.querySelector('.date-error');
+            try
+            {
+                let date = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
+                (new EmployeePayRoll()).startDate = new Date(date);
+                error.textContent = ""
+                
+            }
+            catch(e)
+            {
+                error.textContent =e;
+            }
+        }
+    }));
+
 });
 
 function resetForm()
