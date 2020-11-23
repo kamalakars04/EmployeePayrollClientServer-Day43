@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 });
 
 const createEmployeeTable = ()=>{
-   employeeList = createJsonFile();
+   employeeList = JSON.parse(localStorage.getItem("NewEmployeePayrollList"));
    let innerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
     for (const empPayrollData of employeeList) {
         innerHtml = `${innerHtml}
@@ -14,11 +14,11 @@ const createEmployeeTable = ()=>{
             <td>${empPayrollData._gender}</td>
             <td>${getDeptHtml(empPayrollData._department)}</td>
             <td>${empPayrollData._salary}</td>
-            <td>${empPayrollData._startDate}</td>
+            <td>${(empPayrollData._startDate)}</td>
             <td>
-            <img id="${empPayrollData.id}" onclick="remove(this)" 
+            <img id="${empPayrollData._id}" onclick="remove(this)" 
                 src="../assets/icons/delete-black-18dp.svg" alt="delete">
-            <img id="${empPayrollData.id}" onclick="update(this)" 
+            <img id="${empPayrollData._id}" onclick="update(this)" 
                 src="../assets/icons/create-black-18dp.svg" alt="edit"></td>
         </tr>
     `;
