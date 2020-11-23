@@ -1,6 +1,10 @@
+*
+{
+    box-sizing: border-box;
+}
 body
 {
-    background-color: rgb(202, 198, 198);
+    background-color: rgb(221, 219, 219);
     margin : 0;
     display: flex;
     flex-flow: column wrap;
@@ -46,4 +50,37 @@ body
     color: black;
     font-weight: bolder;
     font-size: large;
+}
+.EmployeeDetails
+{
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    margin-left: 8%;
+    
+}
+.textEmployee
+{
+    flex: auto;
+}
+.AddUser
+{
+    margin-right: 5%;
+}
+.addButton 
+{ 
+    font-size: 20px;
+    font-family: Roboto;
+    color: white; 
+    background-color: rgb(28, 158, 28);
+    font-weight: 400;
+    margin-right: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid black;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
