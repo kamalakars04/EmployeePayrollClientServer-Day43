@@ -7,8 +7,8 @@ body
     background-color: rgb(221, 219, 219);
     margin : 0;
     display: flex;
-    flex-flow: column wrap;
-    flex: auto;
+    flex-direction: column;
+   
 }
 .header
 {
@@ -69,7 +69,7 @@ body
 .AddUser
 {
     display: flex;
-    margin-right: 5%;
+    margin-right: 8%;
     justify-content: flex-end;
     align-items: center;
     flex: auto;
@@ -90,7 +90,7 @@ body
     color: white; 
     background-color: rgb(28, 158, 28);
     font-weight: 400;
-    margin-right: 20px;
+    margin-right: 2%;
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 6px;
@@ -111,8 +111,8 @@ body
 }
 
 .employeeTable {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 8%;
+    margin-right: 8%;
     overflow: auto;
     border-collapse: collapse;
     min-width: 800px;
