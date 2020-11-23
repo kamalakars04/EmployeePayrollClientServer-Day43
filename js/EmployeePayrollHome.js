@@ -1,30 +1,107 @@
+let employeeList = [];
 window.addEventListener('DOMContentLoaded', ()=>{
     createEmployeeTable();
 });
 
 const createEmployeeTable = ()=>{
-    const innerHtml = `
-    <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Department</th>
-            <th>Salary</th>
-            <th>Start Date</th>
-            <th>Actions</th>
-        </tr>
+   employeeList = createJsonFile();
+   let innerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
+    for (const empPayrollData of employeeList) {
+        innerHtml = `${innerHtml}
         <tr>
-            <td><img src="../assets/profilePic/Ellipse -2.png" alt=""></td>
-            <td>Kamalakar Rao</td>
-            <td>male</td>
-            <td><div class="dept-label">Finance</div><div class="dept-label">HR</div></td>
-            <td>350000</td>
-            <td>21/07/1999</td>
+            <td><img class="profile" alt="profilePic" src="${empPayrollData._profilePic}"></td>
+            <td>${empPayrollData._name}</td>
+            <td>${empPayrollData._gender}</td>
+            <td>${getDeptHtml(empPayrollData._department)}</td>
+            <td>${empPayrollData._salary}</td>
+            <td>${empPayrollData._startDate}</td>
             <td>
-                <img id="delete" src="../assets/icons/delete-black-18dp.svg" alt="delete" onclick="Delete(this)">
-                <img id="edit" src="../assets/icons/create-black-18dp.svg" alt="edit" onclick="Update(this)">
-            </td>
+            <img id="${empPayrollData.id}" onclick="remove(this)" 
+                src="../assets/icons/delete-black-18dp.svg" alt="delete">
+            <img id="${empPayrollData.id}" onclick="update(this)" 
+                src="../assets/icons/create-black-18dp.svg" alt="edit"></td>
         </tr>
     `;
+    }
     document.querySelector(".employeeTable").innerHTML = innerHtml;
+}
+const getDeptHtml = (deptList) => {
+    let deptHtml = '';
+    for (const dept of deptList) {
+        deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`
+    }
+    return deptHtml;
+  }
+
+function createJsonFile()
+{
+    
+      let EmployeePayrollDB = 
+      [
+        {
+          "id": 1,
+          "_name": "Mark Taylor",
+          "_gender": "male",
+          "_department": [
+            "HR",
+            "Sales",
+            "Finance",
+            "Engineer"
+          ],
+          "_salary": "500000",
+          "_startDate": "29 Oct 2019",
+          "_note": "All In One",
+          "_profilePic": "../assets/profilePic/Ellipse -3.png"
+        },
+        {
+          "_name": "BharathiGowda",
+          "_profilePic": "../assets/profilePic/Ellipse -7.png",
+          "_gender": "female",
+          "_department": [
+            "Finance"
+          ],
+          "_salary": "372000",
+          "_note": "jkhkjk testtttt",
+          "_startDate": "1 Nov 2020",
+          "id": 3
+        },
+        {
+          "id": "14",
+          "_name": "Aravidh",
+          "_profilePic": "../assets/profilePic/Ellipse -2.png",
+          "_gender": "male",
+          "_department": [
+            "Finance",
+            "Engineer"
+          ],
+          "_salary": "362000",
+          "_note": " ,mnndfnsAhdsfhdskhfdsjk",
+          "_startDate": "1 Nov 2020"
+        },
+        {
+          "id": "15",
+          "_name": "Hhhhh",
+          "_profilePic": "../assets/profilePic/Ellipse -4.png",
+          "_gender": "female",
+          "_department": [
+            "Finance"
+          ],
+          "_salary": "337400",
+          "_note": "dsflds",
+          "_startDate": "1 Nov 2020"
+        },
+        {
+          "id": "16",
+          "_name": "Akkgkdfg",
+          "_profilePic": "../assets/profilePic/Ellipse -3.png",
+          "_gender": "male",
+          "_department": [
+            "Finance"
+          ],
+          "_salary": "363300",
+          "_note": "Afdsfsd",
+          "_startDate": "1 Nov 2020"
+        }
+      ]
+       return EmployeePayrollDB;
 }
