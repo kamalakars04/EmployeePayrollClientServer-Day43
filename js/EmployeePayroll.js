@@ -56,6 +56,6 @@ class EmployeePayRoll
    toString() {
      return "id=" + this.id + ", name='" + this.name + ", gender='" + this.gender + 
             ", profilePic='" + this.profilePic + ", department=" + this.department +
-            ", salary=" + this.salary + ", startDate=" + this.startDate + ", note=" + this.note;
+            ", salary=" + this.salary + ", startDate=" + this.startDate.toLocaleDateString("en-GB") + ", note=" + this.note;
    }
 }
