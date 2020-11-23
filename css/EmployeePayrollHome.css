@@ -149,8 +149,10 @@ td
     opacity: 1;
 }
 
-td:first-child {
+td:first-child 
+{
     display: flex;
+    flex: auto;
     align-items: center;
 }
 
