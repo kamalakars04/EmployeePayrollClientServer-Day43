@@ -1,6 +1,7 @@
 let employeeList = [];
 window.addEventListener('DOMContentLoaded', ()=>{
     createEmployeeTable();
+    localStorage.removeItem('editEmp');
 });
 
 const createEmployeeTable = ()=>{
@@ -41,6 +42,16 @@ const remove = (node) =>{
 let askDelete = (name) =>{
     return confirm("Do you want to continue with the deletion of employee!!");
 }
+
+const update = (node) =>{
+    let employeePayrollData = employeeList.find(emp => emp._id == node.id);
+    if(employeePayrollData != undefined)
+    {
+        localStorage.setItem("editEmp",JSON.stringify(employeePayrollData));
+        window.location.replace(site_properties.add_user);
+    }
+}
+
 
 
 const getDeptHtml = (deptList) => {
