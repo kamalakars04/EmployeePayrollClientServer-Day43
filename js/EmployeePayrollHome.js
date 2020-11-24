@@ -5,7 +5,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
 const createEmployeeTable = ()=>{
    employeeList = JSON.parse(localStorage.getItem("NewEmployeePayrollList"));
-   let innerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
+
+   let innerHtml = "";
+   innerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
     for (const empPayrollData of employeeList) {
         innerHtml = `${innerHtml}
         <tr>
@@ -25,6 +27,22 @@ const createEmployeeTable = ()=>{
     }
     document.querySelector(".employeeTable").innerHTML = innerHtml;
 }
+
+const remove = (node) =>{
+    let empPayrollData = employeeList.findIndex(emp => emp._id == node.id);
+    if(askDelete(empPayrollData._name))
+    employeeList.splice(empPayrollData,1);
+    else
+    return;
+    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeeList));
+    createEmployeeTable();
+}
+
+let askDelete = (name) =>{
+    return confirm("Do you want to continue with the deletion of employee!!");
+}
+
+
 const getDeptHtml = (deptList) => {
     let deptHtml = '';
     for (const dept of deptList) {
