@@ -120,6 +120,11 @@ body
 
 td {
     text-align: left;
+    justify-content: space-evenly;
+}
+td:last-child
+{
+    align-content: center;
 }
 
 th
