@@ -36,9 +36,6 @@ class EmployeePayRoll
  
    get note() { return this._note; }
    set note(note) { 
-       if(note == "")
-       this._note = "Empty"
-       else
        this._note = note; 
    }
  

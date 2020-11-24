@@ -61,6 +61,7 @@ body
     margin-left: 8%;
     margin-right: 6px;
     align-content: center;
+    cursor: pointer;
 }
 .header-text
 {
@@ -68,6 +69,7 @@ body
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    cursor: pointer;
 }
 .text-employee
 {
