@@ -14,7 +14,7 @@ const createEmployeeTable = ()=>{
             <td>${empPayrollData._gender}</td>
             <td>${getDeptHtml(empPayrollData._department)}</td>
             <td>${empPayrollData._salary}</td>
-            <td>${(empPayrollData._startDate)}</td>
+            <td>${new Date(empPayrollData._startDate).toLocaleDateString('en-GB')}</td>
             <td>
             <img id="${empPayrollData._id}" onclick="remove(this)" 
                 src="../assets/icons/delete-black-18dp.svg" alt="delete">
