@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
 const createEmployeeTable = ()=>{
    employeeList = JSON.parse(localStorage.getItem("NewEmployeePayrollList"));
-   let innerHtmlCount = `${Array.from(employeeList).length}`;
+   let innerHtmlCount = !employeeList ? `0` : `${Array.from(employeeList).length}`;
    document.querySelector(".emp-count").innerHTML = innerHtmlCount;
    let innerHtml = "";
    innerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";

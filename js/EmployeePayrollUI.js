@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', (event) =>
             try
             {
                 let date = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
-                (new EmployeePayRoll()).startDate = new Date(date);
+                checkDate(new Date(date));
                 error.textContent = ""
                 
             }
@@ -122,7 +122,7 @@ function save()
                 alert("Successfully Updated");
             else
             {
-                alert(employee.toString());
+                alert("Added successfully!!");
             }
             window.location.replace(site_properties.home_page);
         }
@@ -152,7 +152,7 @@ function CreateAndSaveLocalStorage()
     {
         let index =employeePayrollList.findIndex(emp => emp.id == employeePayrollObj.id);
         if(index != -1)
-        employeePayrollList.splice(index,1,employee);
+        employeePayrollList.splice(index,1,employeePayrollObj);
         else
             employeePayrollList.push(employeePayrollObj); 
     } 
