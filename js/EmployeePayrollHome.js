@@ -20,9 +20,9 @@ const createEmployeeTable = ()=>{
             <td>${empPayrollData._salary}</td>
             <td>${new Date(empPayrollData._startDate).toLocaleDateString('en-GB')}</td>
             <td>
-            <img id="${empPayrollData._id}" onclick="remove(this)" 
+            <img id="${empPayrollData.id}" onclick="remove(this)" 
                 src="../assets/icons/delete-black-18dp.svg" alt="delete">
-            <img id="${empPayrollData._id}" onclick="update(this)" 
+            <img id="${empPayrollData.id}" onclick="update(this)" 
                 src="../assets/icons/create-black-18dp.svg" alt="edit"></td>
         </tr>
     `;
@@ -31,7 +31,7 @@ const createEmployeeTable = ()=>{
 }
 
 const remove = (node) =>{
-    let empPayrollData = employeeList.findIndex(emp => emp._id == node.id);
+    let empPayrollData = employeeList.findIndex(emp => emp.id == node.id);
     if(askDelete(empPayrollData._name))
     employeeList.splice(empPayrollData,1);
     else
@@ -45,7 +45,7 @@ let askDelete = (name) =>{
 }
 
 const update = (node) =>{
-    let employeePayrollData = employeeList.find(emp => emp._id == node.id);
+    let employeePayrollData = employeeList.find(emp => emp.id == node.id);
     if(employeePayrollData != undefined)
     {
         localStorage.setItem("editEmp",JSON.stringify(employeePayrollData));

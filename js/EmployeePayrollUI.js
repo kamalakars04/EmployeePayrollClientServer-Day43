@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', (event) =>
         } 
         try 
         {
-            (new EmployeePayRoll()).name = name.value;
+            checkName(name.value);
             textError.textContent = "";
         }
         catch (e) 
@@ -116,8 +116,8 @@ function save()
     {
         try
         {
-            let employee = createEmployeePayroll();
-            CreateAndSaveLocalStorage(employee);
+            createEmployeePayroll();
+            CreateAndSaveLocalStorage();
             if(isUpdate)
                 alert("Successfully Updated");
             else
@@ -144,21 +144,21 @@ function save()
     return false;
 }
 
-function CreateAndSaveLocalStorage(employee)
+function CreateAndSaveLocalStorage()
 {
     let employeePayrollList = [];
     employeePayrollList = JSON.parse(localStorage.getItem("NewEmployeePayrollList")); 
     if(employeePayrollList != undefined)
     {
-        let index =employeePayrollList.findIndex(emp => emp._id == employee._id);
+        let index =employeePayrollList.findIndex(emp => emp.id == employeePayrollObj.id);
         if(index != -1)
         employeePayrollList.splice(index,1,employee);
         else
-            employeePayrollList.push(employee); 
+            employeePayrollList.push(employeePayrollObj); 
     } 
     else
     { 
-        employeePayrollList = [employee] ;
+        employeePayrollList = [employeePayrollObj] ;
     }
     localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList))
      
@@ -166,17 +166,16 @@ function CreateAndSaveLocalStorage(employee)
 
 const createEmployeePayroll=()=>
 { 
-    let employeeNew = new EmployeePayRoll();
-    employeeNew._id = createNewEmployeeId();
-    employeeNew._name = getInputElementValue('#fullName');
-    employeeNew._profilePic = getSelectedValues('[name=profilePic]').pop();
-    employeeNew._gender = getSelectedValues('[name=gender]').pop(); 
-    employeeNew._department = getSelectedValues('[name=department]');
-    employeeNew._salary = getInputElementValue('#salary');
-    employeeNew._note = getInputElementValue('#notes');
+    employeePayrollObj.id = createNewEmployeeId();
+    employeePayrollObj._name = getInputElementValue('#fullName');
+    employeePayrollObj._profilePic = getSelectedValues('[name=profilePic]').pop();
+    employeePayrollObj._gender = getSelectedValues('[name=gender]').pop(); 
+    employeePayrollObj._department = getSelectedValues('[name=department]');
+    employeePayrollObj._salary = getInputElementValue('#salary');
+    employeePayrollObj._note = getInputElementValue('#notes');
     let date = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
-    employeeNew._startDate = new Date(date);
-    return employeeNew; 
+    employeePayrollObj._startDate = new Date(date);
+    return employeePayrollObj; 
 }
 
 const getSelectedValues = (propertyValue) =>
@@ -199,8 +198,8 @@ const getInputElementValue = (id) =>
 
 const createNewEmployeeId = () => {
     
-    if(employeePayrollObj._id != undefined)
-    return employeePayrollObj._id;
+    if(isUpdate)
+    return employeePayrollObj.id;
     let empID = localStorage.getItem("EmployeeID");
     empID = !empID ? 1 : (parseInt(empID)+1).toString();
     localStorage.setItem("EmployeeID",empID);
