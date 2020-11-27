@@ -97,12 +97,14 @@ const setSelectedValues = (propertyValue, value) => {
     });    
 }
 
+// To set the text content of elements
 const setTextValue = (id, value) => 
 {
     const element = document.querySelector(id); 
     element.textContent = value; 
 } 
 
+// To set the values of elements
 const setValue = (id, value) =>
 {
     const element = document.querySelector(id);
@@ -137,7 +139,7 @@ function save()
                 alert("Successfully Updated");
             else
             {
-                alert("Added successfully!!");
+                
             }
             window.location.replace(site_properties.home_page);
         }
@@ -164,6 +166,9 @@ function SaveToLocalStorage()
 {
     let employeePayrollList = [];
     employeePayrollList = JSON.parse(localStorage.getItem("NewEmployeePayrollList")); 
+
+    // If employee payroll list already exists in local storage then push into it.
+    // Else create a new object and push it
     if(employeePayrollList != undefined)
     {
         let index =employeePayrollList.findIndex(emp => emp.id == employeePayrollObj.id);
@@ -179,9 +184,30 @@ function SaveToLocalStorage()
     localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList))
 }
 
+// Save to json server when selected as storage
+function SaveToJsonServer()
+{
+    // Add a new employee using post to json server
+    if(!isUpdate)
+    {
+        makeAJAXCall("POST",site_properties.server_url,true,employeePayrollObj)
+        .then(responseText => alert("Added successfully!!"))
+        .catch(err => alert(e.statusText))
+    }
+
+    // Update the already present employee using put method into json server
+    if(isUpdate)
+    {
+        makeAJAXCall("PUT",site_properties.server_url,true,employeePayrollObj)
+        .then(responseText => alert("Updated successfully!!"))
+        .catch(err => alert(e.statusText))
+    }
+}
+
 // Create the object for saving into local storage or server
 const createEmployeePayroll=()=>
 { 
+    // Create id only if the storage is selected as local storage else server creates id by itself
     if(site_properties.use_local_storage == true)
         employeePayrollObj.id = createNewEmployeeId();
     employeePayrollObj._name = getInputElementValue('#fullName');
@@ -195,6 +221,7 @@ const createEmployeePayroll=()=>
     return employeePayrollObj; 
 }
 
+// To get values of multiple items of same type
 const getSelectedValues = (propertyValue) =>
 {
     let allItems = Array.from(document.querySelectorAll(propertyValue)); 
@@ -206,13 +233,15 @@ const getSelectedValues = (propertyValue) =>
     });
     return sellItems;
 }
-            
+ 
+// To get element value of single element
 const getInputElementValue = (id) =>
 {
     let value = document.querySelector(id).value;
     return value; 
 }
 
+// Create a employee id if required
 const createNewEmployeeId = () => 
 {
     if(isUpdate)
