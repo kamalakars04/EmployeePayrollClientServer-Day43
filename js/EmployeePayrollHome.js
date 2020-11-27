@@ -53,17 +53,31 @@ function GetDataFromJSONServer()
 }
 
 const remove = (node) =>{
-    let empPayrollData = employeeList.findIndex(emp => emp.id == node.id);
-    if(askDelete(empPayrollData._name))
-    employeeList.splice(empPayrollData,1);
+    if(site_properties.use_local_storage)
+    {
+        let empPayrollData = employeeList.findIndex(emp => emp.id == node.id);
+        if(askDelete())
+        employeeList.splice(empPayrollData,1);
+        else
+        return;
+        localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeeList));
+        window.location.reload();
+    }
     else
-    return;
-    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeeList));
-    GetData();
+    {
+        if(askDelete())
+        {
+            makeAJAXCall("DELETE",site_properties.server_url+node.id.toString(),false)
+            .then(window.location.reload())
+            .catch(err => {alert(e.statusText);window.location.reload();})
+        }
+        else
+        return;
+    }
 }
 
 // Ask confirmation to delete
-let askDelete = (name) =>{
+let askDelete = () =>{
     return confirm("Do you want to continue with the deletion of employee!!");
 }
 
