@@ -1,6 +1,6 @@
-function makeAJAXCall(methodType, url, async = true, data = null) 
+async function makeAJAXCall(methodType, url, async = true, data = null) 
 {
-    return new Promise(function (resolve,reject) 
+    let promise = new Promise(function (resolve,reject) 
     {
         let xhr = new XMLHttpRequest();
         
@@ -32,13 +32,14 @@ function makeAJAXCall(methodType, url, async = true, data = null)
         }
         xhr.onerror = function () 
         {
-        reject(
+            reject(
             {
-            status: this.status,
-            statusText: xhttp.statusText
-        });
+                status: this.status,
+                statusText: xhttp.statusText
+            });
         };
-
     });
+    await promise;
+    return promise;
 }
  

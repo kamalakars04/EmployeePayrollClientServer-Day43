@@ -51,7 +51,7 @@
       "id": 7
     },
     {
-      "_name": "Charan",
+      "_name": "Charan Rakam",
       "_profilePic": "../assets/profilePic/Ellipse -2.png",
       "_gender": "male",
       "_department": [
@@ -64,32 +64,27 @@
       "id": 8
     },
     {
-      "_name": "VaniPrasad",
+      "_name": "Sahana G",
       "_profilePic": "../assets/profilePic/Ellipse -4.png",
       "_gender": "female",
       "_department": [
-        "HR",
-        "Sales",
-        "Finance",
-        "Engineer",
-        "Others"
-      ],
-      "_salary": "447100",
-      "_note": "",
-      "_startDate": "2020-11-15T18:30:00.000Z",
-      "id": 9
-    },
-    {
-      "_name": "AAaa",
-      "_profilePic": "../assets/profilePic/Ellipse -1.png",
-      "_gender": "male",
-      "_department": [
-        "HR",
-        "Engineer"
+        "HR"
       ],
       "_salary": "400000",
       "_note": "",
-      "_startDate": "2020-11-17T18:30:00.000Z",
+      "_startDate": "2020-11-14T18:30:00.000Z",
+      "id": 9
+    },
+    {
+      "_name": "Abhiash",
+      "_profilePic": "../assets/profilePic/Ellipse -2.png",
+      "_gender": "male",
+      "_department": [
+        "HR"
+      ],
+      "_salary": "400000",
+      "_note": "",
+      "_startDate": "2020-11-15T18:30:00.000Z",
       "id": 10
     }
   ]

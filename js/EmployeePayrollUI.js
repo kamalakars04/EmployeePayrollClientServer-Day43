@@ -1,10 +1,14 @@
 let employeePayrollObj = {};
 let isUpdate = false;
+let name;
+let comparedate;
 
 // During the page load
 window.addEventListener('DOMContentLoaded', (event) => 
 {
-    const name = document.querySelector('#fullName'); 
+    event.preventDefault();
+    event.stopPropagation();
+    name = document.querySelector('#fullName'); 
     const textError = document.querySelector('.error-name');
 
     // To check the format of name
@@ -43,8 +47,8 @@ window.addEventListener('DOMContentLoaded', (event) =>
             const error = document.querySelector('.date-error');
             try
             {
-                let date = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
-                checkDate(new Date(date));
+                comparedate = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
+                checkDate(new Date(comparedate));
                 error.textContent = ""
                 
             }
@@ -117,41 +121,51 @@ function resetForm()
     const output = document.querySelector('#salaryOutput');
     output.textContent = 400000;
     document.querySelector('.error-name').textContent = "";
+    document.querySelector('.date-error').textContent = "";
 }
 
 // On submit save the details after checking necessary conditions
-function save()
+const save = (event) => 
 {
-    let department = [];
-    let result = [];
-    department = Array.from(document.querySelectorAll("[name = department]"));
-    result = department.filter(p => p.checked === true);
-    if(result.length <= 0)
-    {
-        alert('Select atleast one department');
-        department.forEach(p => p.focus());
-        return false;
-    }
-    else if(result.length > 0)
-    {
+    event.preventDefault();
+    event.stopPropagation();
+    
+        let department = [];
+        let result = [];
+        department = Array.from(document.querySelectorAll("[name = department]"));
+        result = department.filter(p => p.checked === true);
+        if(result.length <= 0)
+        {
+            alert('Select atleast one department');
+            department.forEach(p => p.focus());
+            return;
+        }
+        try
+        {
+            checkName(name.value);
+            checkDate(new Date(comparedate));
+        }
+        catch
+        {
+            alert("invalid entries!!");
+            return;
+        }
         try
         {
             createEmployeePayroll();
             if(site_properties.use_local_storage)
             {
                 SaveToLocalStorage();
-                return true;
             }
             else
+            {
                 SaveToJsonServer();
-            return true;
+            }
         }
         catch(e)
         {
             alert(e);
-            return false;
         }
-    }
 }
 
 // Create and save obj to local storage
@@ -189,18 +203,19 @@ function SaveToJsonServer()
 {
     if(!isUpdate)
     {
-        makeAJAXCall("POST",site_properties.server_url,true,employeePayrollObj)
-        .then(responseText =>{alert("Added successfully!!"); redirect();})
-        .catch(err => {alert(e.statusText);redirect();})
+         makeAJAXCall("POST",site_properties.server_url,true,employeePayrollObj)
+        .then(responseText =>{window.location.replace(site_properties.home_page);})
+        .catch(err => {alert(e.statusText);throw e;});
     }
 
     // Update the already present employee using put method into json server
     if(isUpdate)
     {
         makeAJAXCall("PUT",site_properties.server_url+employeePayrollObj.id.toString(),true,employeePayrollObj)
-        .then(responseText => {alert("Updated successfully!!");redirect();})
-        .catch(err => {alert(e.statusText);redirect();})
+        .then(responseText => {window.location = "http://127.0.0.1:5500/pages/EmployeePayrollHome.html";})
+        .catch(err => {alert(e.statusText);throw e;});
     }
+    
 }
 
 
