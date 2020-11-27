@@ -1,33 +1,48 @@
 let employeeList = [];
-window.addEventListener('DOMContentLoaded', ()=>{
+window.addEventListener('DOMContentLoaded', (event)=>{
+    event.preventDefault();
+    event.stopPropagation();
     createEmployeeTable();
-    localStorage.removeItem('editEmp');
 });
 
 const createEmployeeTable = ()=>{
-   employeeList = JSON.parse(localStorage.getItem("NewEmployeePayrollList"));
-   let innerHtmlCount = !employeeList ? `0` : `${Array.from(employeeList).length}`;
-   document.querySelector(".emp-count").innerHTML = innerHtmlCount;
-   let innerHtml = "";
-   innerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
-    for (const empPayrollData of employeeList) {
-        innerHtml = `${innerHtml}
-        <tr>
-            <td><img class="profile" alt="profilePic" src="${empPayrollData._profilePic}"></td>
-            <td>${empPayrollData._name}</td>
-            <td>${empPayrollData._gender}</td>
-            <td>${getDeptHtml(empPayrollData._department)}</td>
-            <td>${empPayrollData._salary}</td>
-            <td>${new Date(empPayrollData._startDate).toLocaleDateString('en-GB')}</td>
-            <td>
-            <img id="${empPayrollData.id}" onclick="remove(this)" 
-                src="../assets/icons/delete-black-18dp.svg" alt="delete">
-            <img id="${empPayrollData.id}" onclick="update(this)" 
-                src="../assets/icons/create-black-18dp.svg" alt="edit"></td>
-        </tr>
-    `;
+    //
+    if(site_properties.use_local_storage)
+        employeeList = JSON.parse(localStorage.getItem("NewEmployeePayrollList"));
+    else
+    {
+        GetDataFromJSONServer();
     }
-    document.querySelector(".employeeTable").innerHTML = innerHtml;
+    let innerHtmlCount = !employeeList ? `0` : `${Array.from(employeeList).length}`;
+    document.querySelector(".emp-count").innerHTML = innerHtmlCount;
+    let innerHtml = "";
+    innerHtml = "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>";
+      for(const empPayrollData of employeeList) {
+          innerHtml = `${innerHtml}
+          <tr>
+              <td><img class="profile" alt="profilePic" src="${empPayrollData._profilePic}"></td>
+              <td>${empPayrollData._name}</td>
+              <td>${empPayrollData._gender}</td>
+              <td>${getDeptHtml(empPayrollData._department)}</td>
+              <td>${empPayrollData._salary}</td>
+              <td>${new Date(empPayrollData._startDate).toLocaleDateString('en-GB')}</td>
+              <td>
+              <img id="${empPayrollData.id}" onclick="remove(this)" 
+                  src="../assets/icons/delete-black-18dp.svg" alt="delete">
+              <img id="${empPayrollData.id}" onclick="update(this)" 
+                  src="../assets/icons/create-black-18dp.svg" alt="edit"></td>
+          </tr>
+      `;
+      }
+      document.querySelector(".employeeTable").innerHTML = innerHtml;
+}
+
+function GetDataFromJSONServer()
+{
+    makeAJAXCall("GET",site_properties.server_url,true)
+    .then(responsetext => 
+          employeeList = JSON.parse(responsetext))
+    .catch(err => console.log("Get Error statustext : "+ err.statusText +" status : "+err.status))
 }
 
 const remove = (node) =>{
@@ -66,72 +81,6 @@ const getDeptHtml = (deptList) => {
 function createJsonFile()
 {
     
-      let EmployeePayrollDB = 
-      [
-        {
-          "id": 1,
-          "_name": "Mark Taylor",
-          "_gender": "male",
-          "_department": [
-            "HR",
-            "Sales",
-            "Finance",
-            "Engineer"
-          ],
-          "_salary": "500000",
-          "_startDate": "29 Oct 2019",
-          "_note": "All In One",
-          "_profilePic": "../assets/profilePic/Ellipse -3.png"
-        },
-        {
-          "_name": "BharathiGowda",
-          "_profilePic": "../assets/profilePic/Ellipse -7.png",
-          "_gender": "female",
-          "_department": [
-            "Finance"
-          ],
-          "_salary": "372000",
-          "_note": "jkhkjk testtttt",
-          "_startDate": "1 Nov 2020",
-          "id": 3
-        },
-        {
-          "id": "14",
-          "_name": "Aravidh",
-          "_profilePic": "../assets/profilePic/Ellipse -2.png",
-          "_gender": "male",
-          "_department": [
-            "Finance",
-            "Engineer"
-          ],
-          "_salary": "362000",
-          "_note": " ,mnndfnsAhdsfhdskhfdsjk",
-          "_startDate": "1 Nov 2020"
-        },
-        {
-          "id": "15",
-          "_name": "Hhhhh",
-          "_profilePic": "../assets/profilePic/Ellipse -4.png",
-          "_gender": "female",
-          "_department": [
-            "Finance"
-          ],
-          "_salary": "337400",
-          "_note": "dsflds",
-          "_startDate": "1 Nov 2020"
-        },
-        {
-          "id": "16",
-          "_name": "Akkgkdfg",
-          "_profilePic": "../assets/profilePic/Ellipse -3.png",
-          "_gender": "male",
-          "_department": [
-            "Finance"
-          ],
-          "_salary": "363300",
-          "_note": "Afdsfsd",
-          "_startDate": "1 Nov 2020"
-        }
-      ]
+      
        return EmployeePayrollDB;
 }

@@ -1,9 +1,13 @@
 let employeePayrollObj = {};
 let isUpdate = false;
+
+// During the page load
 window.addEventListener('DOMContentLoaded', (event) => 
 {
     const name = document.querySelector('#fullName'); 
     const textError = document.querySelector('.error-name');
+
+    // To check the format of name
     name.addEventListener('input', function() 
     {
         if(name.value.length == 0) 
@@ -24,11 +28,14 @@ window.addEventListener('DOMContentLoaded', (event) =>
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
     output.textContent = salary.value;
+
+    // To output the salary from range
     salary.addEventListener('input', function()
     {
         output.textContent = salary.value; 
     });
 
+    // To check the date format
     const date = Array.from(document.querySelectorAll('[name = date]'));
     date.forEach(p => p.addEventListener('input', function(){
         if(date[0].value !="" && date[1].value != "" && date[2].value != "")
@@ -48,10 +55,11 @@ window.addEventListener('DOMContentLoaded', (event) =>
         }
     }));
 
+    // To check if it is an update request 
     checkForUpdate();
 });
 
-
+// Check for update request and get the obj details
 const checkForUpdate = () => {
     const employeePayrollJson = localStorage.getItem('editEmp');
     isUpdate = employeePayrollJson ? true : false;
@@ -60,6 +68,7 @@ const checkForUpdate = () => {
     setForm();
 }
 
+// Set the form with obj details for update
 const setForm = () => {
     setValue('#fullName', employeePayrollObj._name);
     setSelectedValues('[name=profilePic]', employeePayrollObj._profilePic);
@@ -74,6 +83,7 @@ const setForm = () => {
     setValue('#year',date[2]);
 }
 
+// Set the value of slected item 
 const setSelectedValues = (propertyValue, value) => {
     let allItems = document.querySelectorAll(propertyValue);
     allItems.forEach(item => {
@@ -88,17 +98,18 @@ const setSelectedValues = (propertyValue, value) => {
 }
 
 const setTextValue = (id, value) => 
-    {
-        const element = document.querySelector(id); 
-        element.textContent = value; 
-    } 
+{
+    const element = document.querySelector(id); 
+    element.textContent = value; 
+} 
 
 const setValue = (id, value) =>
-    {
-        const element = document.querySelector(id);
-        element.value = value; 
-    }
+{
+    const element = document.querySelector(id);
+    element.value = value; 
+}
 
+// When button reset is pressed reset all fields
 function resetForm()
 { 
     const output = document.querySelector('#salaryOutput');
@@ -106,6 +117,7 @@ function resetForm()
     document.querySelector('.error-name').textContent = "";
 }
 
+// On submit save the details after checking necessary conditions
 function save()
 {
     let department = [];
@@ -117,7 +129,10 @@ function save()
         try
         {
             createEmployeePayroll();
-            CreateAndSaveLocalStorage();
+            if(site_properties.use_local_storage)
+                SaveToLocalStorage();
+            else
+                SaveToJsonServer();
             if(isUpdate)
                 alert("Successfully Updated");
             else
@@ -144,7 +159,8 @@ function save()
     return false;
 }
 
-function CreateAndSaveLocalStorage()
+// Create and save obj to local storage
+function SaveToLocalStorage()
 {
     let employeePayrollList = [];
     employeePayrollList = JSON.parse(localStorage.getItem("NewEmployeePayrollList")); 
@@ -161,12 +177,13 @@ function CreateAndSaveLocalStorage()
         employeePayrollList = [employeePayrollObj] ;
     }
     localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList))
-     
 }
 
+// Create the object for saving into local storage or server
 const createEmployeePayroll=()=>
 { 
-    employeePayrollObj.id = createNewEmployeeId();
+    if(site_properties.use_local_storage == true)
+        employeePayrollObj.id = createNewEmployeeId();
     employeePayrollObj._name = getInputElementValue('#fullName');
     employeePayrollObj._profilePic = getSelectedValues('[name=profilePic]').pop();
     employeePayrollObj._gender = getSelectedValues('[name=gender]').pop(); 
@@ -196,13 +213,12 @@ const getInputElementValue = (id) =>
     return value; 
 }
 
-const createNewEmployeeId = () => {
-    
+const createNewEmployeeId = () => 
+{
     if(isUpdate)
     return employeePayrollObj.id;
     let empID = localStorage.getItem("EmployeeID");
     empID = !empID ? 1 : (parseInt(empID)+1).toString();
     localStorage.setItem("EmployeeID",empID);
     return empID;
-    
 }

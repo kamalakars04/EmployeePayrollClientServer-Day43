@@ -56,3 +56,13 @@ class EmployeePayRoll
             ", salary=" + this.salary + ", startDate=" + this.startDate.toLocaleDateString("en-GB") + ", note=" + this.note;
    }
 }
+
+let employee = new EmployeePayRoll();
+employee._id = 1;
+employee.startDate = new Date();
+console.log(employee.toString());
+
+let employee1 = new EmployeePayRoll();
+employee.id = 2;
+employee.startDate = new Date();
+console.log(employee.toString());
