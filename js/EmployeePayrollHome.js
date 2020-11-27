@@ -52,7 +52,10 @@ function GetDataFromJSONServer()
     .catch(err => console.log("Get Error statustext : "+ err.statusText +" status : "+err.status))
 }
 
+// To delete a selected employee
 const remove = (node) =>{
+
+    // Remove from local storage if it is selected
     if(site_properties.use_local_storage)
     {
         let empPayrollData = employeeList.findIndex(emp => emp.id == node.id);
@@ -63,6 +66,8 @@ const remove = (node) =>{
         localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeeList));
         window.location.reload();
     }
+
+    // remove from json server if it is selected
     else
     {
         if(askDelete())
