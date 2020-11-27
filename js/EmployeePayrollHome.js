@@ -2,17 +2,23 @@ let employeeList = [];
 window.addEventListener('DOMContentLoaded', (event)=>{
     event.preventDefault();
     event.stopPropagation();
-    createEmployeeTable();
+    GetData();
 });
 
-const createEmployeeTable = ()=>{
-    //
+// Get the data based on the storage selected
+const GetData = ()=>{
+    
     if(site_properties.use_local_storage)
         employeeList = JSON.parse(localStorage.getItem("NewEmployeePayrollList"));
     else
     {
         GetDataFromJSONServer();
     }
+}
+
+// Create table using template literals
+function createInnerHtml()
+{
     let innerHtmlCount = !employeeList ? `0` : `${Array.from(employeeList).length}`;
     document.querySelector(".emp-count").innerHTML = innerHtmlCount;
     let innerHtml = "";
@@ -37,11 +43,12 @@ const createEmployeeTable = ()=>{
       document.querySelector(".employeeTable").innerHTML = innerHtml;
 }
 
+// Get the data from json server
 function GetDataFromJSONServer()
 {
     makeAJAXCall("GET",site_properties.server_url,true)
     .then(responsetext => 
-          employeeList = JSON.parse(responsetext))
+          {employeeList = JSON.parse(responsetext); createInnerHtml();})
     .catch(err => console.log("Get Error statustext : "+ err.statusText +" status : "+err.status))
 }
 
@@ -52,13 +59,15 @@ const remove = (node) =>{
     else
     return;
     localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeeList));
-    createEmployeeTable();
+    GetData();
 }
 
+// Ask confirmation to delete
 let askDelete = (name) =>{
     return confirm("Do you want to continue with the deletion of employee!!");
 }
 
+// Update a given node
 const update = (node) =>{
     let employeePayrollData = employeeList.find(emp => emp.id == node.id);
     if(employeePayrollData != undefined)
@@ -68,19 +77,11 @@ const update = (node) =>{
     }
 }
 
-
-
+// Get the values of all the departments selected
 const getDeptHtml = (deptList) => {
     let deptHtml = '';
     for (const dept of deptList) {
         deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`
     }
     return deptHtml;
-  }
-
-function createJsonFile()
-{
-    
-      
-       return EmployeePayrollDB;
 }
