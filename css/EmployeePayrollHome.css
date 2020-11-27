@@ -56,7 +56,6 @@ body
 }
 .EmployeeDetails
 {
-    
     justify-content: flex-start;
     align-items: center;
     display: flex;
@@ -118,7 +117,7 @@ body
     margin-right: 8%;
     overflow: auto;
     border-collapse: collapse;
-    min-width: 800px;
+    min-width: 1000px;
 }
 
 td {
