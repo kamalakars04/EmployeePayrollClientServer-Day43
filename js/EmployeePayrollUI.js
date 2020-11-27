@@ -1,10 +1,14 @@
 let employeePayrollObj = {};
 let isUpdate = false;
+let name;
+let comparedate;
 
 // During the page load
 window.addEventListener('DOMContentLoaded', (event) => 
 {
-    const name = document.querySelector('#fullName'); 
+    event.preventDefault();
+    event.stopPropagation();
+    name = document.querySelector('#fullName'); 
     const textError = document.querySelector('.error-name');
 
     // To check the format of name
@@ -43,8 +47,8 @@ window.addEventListener('DOMContentLoaded', (event) =>
             const error = document.querySelector('.date-error');
             try
             {
-                let date = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
-                checkDate(new Date(date));
+                comparedate = getInputElementValue('#year')+","+getInputElementValue('#month')+","+getInputElementValue('#day');
+                checkDate(new Date(comparedate));
                 error.textContent = ""
                 
             }
@@ -117,48 +121,51 @@ function resetForm()
     const output = document.querySelector('#salaryOutput');
     output.textContent = 400000;
     document.querySelector('.error-name').textContent = "";
+    document.querySelector('.date-error').textContent = "";
 }
 
 // On submit save the details after checking necessary conditions
-function save()
+const save = (event) => 
 {
-    let department = [];
-    let result = [];
-    department = Array.from(document.querySelectorAll("[name = department]"));
-    result = department.filter(p => p.checked === true);
-    if(result.length > 0)
-    {
+    event.preventDefault();
+    event.stopPropagation();
+    
+        let department = [];
+        let result = [];
+        department = Array.from(document.querySelectorAll("[name = department]"));
+        result = department.filter(p => p.checked === true);
+        if(result.length <= 0)
+        {
+            alert('Select atleast one department');
+            department.forEach(p => p.focus());
+            return;
+        }
+        try
+        {
+            checkName(name.value);
+            checkDate(new Date(comparedate));
+        }
+        catch
+        {
+            alert("invalid entries!!");
+            return;
+        }
         try
         {
             createEmployeePayroll();
             if(site_properties.use_local_storage)
+            {
                 SaveToLocalStorage();
-            else
-                SaveToJsonServer();
-            if(isUpdate)
-                alert("Successfully Updated");
+            }
             else
             {
-                
+                SaveToJsonServer();
             }
-            window.location.replace(site_properties.home_page);
         }
         catch(e)
         {
             alert(e);
-            if(e.toString().includes("name"))
-                document.querySelector("#fullName").focus();
-            if(e.toString().includes("Date"))
-                Array.from(document.querySelectorAll('select')).forEach(p => p.focus());
         }
-    }
-    else if(result.length <=0)
-    {
-        alert('Select atleast one department');
-        department.forEach(p => p.focus());
-        return false;
-    }
-    return false;
 }
 
 // Create and save obj to local storage
@@ -173,34 +180,40 @@ function SaveToLocalStorage()
     {
         let index =employeePayrollList.findIndex(emp => emp.id == employeePayrollObj.id);
         if(index != -1)
-        employeePayrollList.splice(index,1,employeePayrollObj);
+        {
+            employeePayrollList.splice(index,1,employeePayrollObj);
+            alert("Updated successfully!!");
+        }
         else
+        {
             employeePayrollList.push(employeePayrollObj); 
+            alert("Added successfully!!");
+        }
     } 
     else
     { 
         employeePayrollList = [employeePayrollObj] ;
+        alert("Added successfully!!");
     }
-    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList))
+    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList));
 }
 
 // Save to json server when selected as storage
 function SaveToJsonServer()
 {
-    // Add a new employee using post to json server
     if(!isUpdate)
     {
-        makeAJAXCall("POST",site_properties.server_url,true,employeePayrollObj)
-        .then(responseText => alert("Added successfully!!"))
-        .catch(err => alert(e.statusText))
+         makeAJAXCall("POST",site_properties.server_url,true,employeePayrollObj)
+        .then(responseText =>{window.location.replace(site_properties.home_page);})
+        .catch(err => {alert(e.statusText);throw e;});
     }
 
     // Update the already present employee using put method into json server
     if(isUpdate)
     {
-        makeAJAXCall("PUT",site_properties.server_url,true,employeePayrollObj)
-        .then(responseText => alert("Updated successfully!!"))
-        .catch(err => alert(e.statusText))
+        makeAJAXCall("PUT",site_properties.server_url+employeePayrollObj.id.toString(),true,employeePayrollObj)
+        .then(responseText => {window.location = "http://127.0.0.1:5500/pages/EmployeePayrollHome.html";})
+        .catch(err => {alert(e.statusText);throw e;});
     }
 }
 

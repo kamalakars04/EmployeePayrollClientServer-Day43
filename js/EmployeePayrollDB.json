@@ -1,7 +1,7 @@
 {
   "EmployeePayrollDB": [
     {
-      "_name": "Kamalakar",
+      "_name": "Kamalakar Rao",
       "_profilePic": "../assets/profilePic/Ellipse -2.png",
       "_gender": "male",
       "_department": [
@@ -13,7 +13,7 @@
       "id": 4
     },
     {
-      "_name": "Ramana",
+      "_name": "Ramana Kumar",
       "_profilePic": "../assets/profilePic/Ellipse -3.png",
       "_gender": "male",
       "_department": [
@@ -25,6 +25,67 @@
       "_note": "",
       "_startDate": "2020-11-15T18:30:00.000Z",
       "id": 5
+    },
+    {
+      "_name": "Prasad",
+      "_profilePic": "../assets/profilePic/Ellipse -2.png",
+      "_gender": "male",
+      "_department": [
+        "Sales"
+      ],
+      "_salary": "454700",
+      "_note": "",
+      "_startDate": "2020-11-15T18:30:00.000Z",
+      "id": 6
+    },
+    {
+      "_name": "Vani",
+      "_profilePic": "../assets/profilePic/Ellipse -1.png",
+      "_gender": "female",
+      "_department": [
+        "Sales"
+      ],
+      "_salary": "400000",
+      "_note": "",
+      "_startDate": "2020-11-13T18:30:00.000Z",
+      "id": 7
+    },
+    {
+      "_name": "Charan Rakam",
+      "_profilePic": "../assets/profilePic/Ellipse -2.png",
+      "_gender": "male",
+      "_department": [
+        "HR",
+        "Sales"
+      ],
+      "_salary": "434600",
+      "_note": "",
+      "_startDate": "2020-11-15T18:30:00.000Z",
+      "id": 8
+    },
+    {
+      "_name": "Sahana G",
+      "_profilePic": "../assets/profilePic/Ellipse -4.png",
+      "_gender": "female",
+      "_department": [
+        "HR"
+      ],
+      "_salary": "400000",
+      "_note": "",
+      "_startDate": "2020-11-14T18:30:00.000Z",
+      "id": 9
+    },
+    {
+      "_name": "Abhiash",
+      "_profilePic": "../assets/profilePic/Ellipse -2.png",
+      "_gender": "male",
+      "_department": [
+        "HR"
+      ],
+      "_salary": "400000",
+      "_note": "",
+      "_startDate": "2020-11-15T18:30:00.000Z",
+      "id": 10
     }
   ]
 }
