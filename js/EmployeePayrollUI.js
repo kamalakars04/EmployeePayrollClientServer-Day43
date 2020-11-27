@@ -215,9 +215,7 @@ function SaveToJsonServer()
         .then(responseText => {window.location = "http://127.0.0.1:5500/pages/EmployeePayrollHome.html";})
         .catch(err => {alert(e.statusText);throw e;});
     }
-    
 }
-
 
 // Create the object for saving into local storage or server
 const createEmployeePayroll=()=>
