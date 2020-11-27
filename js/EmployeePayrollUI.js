@@ -126,39 +126,32 @@ function save()
     let result = [];
     department = Array.from(document.querySelectorAll("[name = department]"));
     result = department.filter(p => p.checked === true);
-    if(result.length > 0)
-    {
-        try
-        {
-            createEmployeePayroll();
-            if(site_properties.use_local_storage)
-                SaveToLocalStorage();
-            else
-                SaveToJsonServer();
-            if(isUpdate)
-                alert("Successfully Updated");
-            else
-            {
-                
-            }
-            window.location.replace(site_properties.home_page);
-        }
-        catch(e)
-        {
-            alert(e);
-            if(e.toString().includes("name"))
-                document.querySelector("#fullName").focus();
-            if(e.toString().includes("Date"))
-                Array.from(document.querySelectorAll('select')).forEach(p => p.focus());
-        }
-    }
-    else if(result.length <=0)
+    if(result.length <= 0)
     {
         alert('Select atleast one department');
         department.forEach(p => p.focus());
         return false;
     }
-    return false;
+    else if(result.length > 0)
+    {
+        try
+        {
+            createEmployeePayroll();
+            if(site_properties.use_local_storage)
+            {
+                SaveToLocalStorage();
+                return true;
+            }
+            else
+                SaveToJsonServer();
+            return true;
+        }
+        catch(e)
+        {
+            alert(e);
+            return false;
+        }
+    }
 }
 
 // Create and save obj to local storage
@@ -173,36 +166,43 @@ function SaveToLocalStorage()
     {
         let index =employeePayrollList.findIndex(emp => emp.id == employeePayrollObj.id);
         if(index != -1)
-        employeePayrollList.splice(index,1,employeePayrollObj);
+        {
+            employeePayrollList.splice(index,1,employeePayrollObj);
+            alert("Updated successfully!!");
+        }
         else
+        {
             employeePayrollList.push(employeePayrollObj); 
+            alert("Added successfully!!");
+        }
     } 
     else
     { 
         employeePayrollList = [employeePayrollObj] ;
+        alert("Added successfully!!");
     }
-    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList))
+    localStorage.setItem("NewEmployeePayrollList", JSON.stringify(employeePayrollList));
 }
 
 // Save to json server when selected as storage
 function SaveToJsonServer()
 {
-    // Add a new employee using post to json server
     if(!isUpdate)
     {
         makeAJAXCall("POST",site_properties.server_url,true,employeePayrollObj)
-        .then(responseText => alert("Added successfully!!"))
-        .catch(err => alert(e.statusText))
+        .then(responseText =>{alert("Added successfully!!"); redirect();})
+        .catch(err => {alert(e.statusText);redirect();})
     }
 
     // Update the already present employee using put method into json server
     if(isUpdate)
     {
-        makeAJAXCall("PUT",site_properties.server_url,true,employeePayrollObj)
-        .then(responseText => alert("Updated successfully!!"))
-        .catch(err => alert(e.statusText))
+        makeAJAXCall("PUT",site_properties.server_url+employeePayrollObj.id.toString(),true,employeePayrollObj)
+        .then(responseText => {alert("Updated successfully!!");redirect();})
+        .catch(err => {alert(e.statusText);redirect();})
     }
 }
+
 
 // Create the object for saving into local storage or server
 const createEmployeePayroll=()=>

@@ -2,6 +2,7 @@ let employeeList = [];
 window.addEventListener('DOMContentLoaded', (event)=>{
     event.preventDefault();
     event.stopPropagation();
+    localStorage.removeItem("editEmp");
     GetData();
 });
 
@@ -74,7 +75,7 @@ const remove = (node) =>{
         {
             makeAJAXCall("DELETE",site_properties.server_url+node.id.toString(),false)
             .then(window.location.reload())
-            .catch(err => {alert(e.statusText);window.location.reload();})
+            .catch(err => {alert(err.statusText);window.location.reload();})
         }
         else
         return;
